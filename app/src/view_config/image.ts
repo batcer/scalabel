@@ -13,9 +13,9 @@ export const MIN_SCALE = 1.0
 /** The boosted ratio to draw shapes sharper */
 export const UP_RES_RATIO = 2
 /** The zoom ratio */
-export const ZOOM_RATIO = 1.05
+export const ZOOM_RATIO = 1.3
 /** The scroll-zoom ratio */
-export const SCROLL_ZOOM_RATIO = 1.03
+export const SCROLL_ZOOM_RATIO = 1.3
 
 /**
  * Get the current item in the state
