@@ -30,7 +30,7 @@ Python](https://img.shields.io/lgtm/grade/python/g/scalabel/scalabel.svg?logo=lg
 2. Настройте server_name, ssl_certificate, ssl_certificate_key 
 3. Run docker-compose
     ```bash
-    docker-compose up -d
+    docker-compose -f docker-compose_ssl.yml up -d
     ```
 
 
