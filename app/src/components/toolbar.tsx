@@ -17,7 +17,7 @@ import {
 import { addLabelTag } from "../action/tag"
 import { renderTemplate } from "../common/label"
 import Session from "../common/session"
-import { Key, LabelTypeName } from "../const/common"
+import { AttributeToolType, Key, LabelTypeName } from "../const/common"
 import { getSelectedTracks } from "../functional/state_util"
 import { isValidId } from "../functional/states"
 import { tracksOverlapping } from "../functional/track"
@@ -46,6 +46,22 @@ export class ToolBar extends Component<Props> {
   private readonly _keyDownHandler: (e: KeyboardEvent) => void
   /** key up handler */
   private readonly _keyUpHandler: (e: KeyboardEvent) => void
+
+  /**
+   * Determines whether or not given attibute element
+   * should have an option to be selected by pressing a hotkey
+   *
+   * @param {Attribute} element
+   *
+   */
+  private shouldHaveHotKey(element: Attribute): boolean {
+    const state = this.state
+    return (
+      element.toolType !== AttributeToolType.LIST ||
+      state.task.config.labelTypes[state.user.select.labelType] ===
+        LabelTypeName.TAG
+    )
+  }
 
   /**
    * Constructor
@@ -134,7 +150,8 @@ export class ToolBar extends Component<Props> {
                 this.handleAttributeToggle,
                 this.getAlignmentIndex,
                 element.name,
-                element.values
+                element.values,
+                this.shouldHaveHotKey(element)
               )}
             </React.Fragment>
           ))}
