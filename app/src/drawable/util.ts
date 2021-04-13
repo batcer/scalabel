@@ -84,10 +84,20 @@ export function getColorById(labelId: IdType, trackId: IdType): number[] {
 }
 
 /**
+ * Return true if should use white font color for better contrast
+ *
+ * @param {number[]} bgColor - background color r g b array
+ * @return boolean
+ */
+export function reverseTextColor(bgColor: number[]): boolean {
+  const [r, g, b] = bgColor
+  return r * 0.299 + g * 0.587 + b * 0.114 < 151
+}
+
+/**
  * Convert numerical color to CSS color string
  *
- * @param {number[]} color: can have 3 or 4 elements
- * @param color
+ * @param {number[]} color - can have 3 or 4 elements
  */
 export function toCssColor(color: number[]): string {
   if (color.length === 3) {
