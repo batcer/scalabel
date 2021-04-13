@@ -107,8 +107,6 @@ export class Box2D extends Label2D {
     let rectStyle = makeRect2DStyle()
     let assignColor: (i: number) => number[] = () => [0]
 
-    // const state: State = Session.getState()
-    // const categoryIndex: number = state.user.select.category
     const categoryColor: string = this._config.categoryColors[this.category[0]]
 
     switch (mode) {
@@ -144,7 +142,12 @@ export class Box2D extends Label2D {
         : assignColor(0)
     rect.draw(context, ratio, rectStyle)
     if (mode === DrawMode.VIEW) {
-      this.drawTag(context, ratio, new Vector2D(rect.x1, rect.y1), this._color)
+      this.drawTag(
+        context,
+        ratio,
+        new Vector2D(rect.x1, rect.y1),
+        rectStyle.color
+      )
     }
     if (mode === DrawMode.CONTROL || this._selected || this._highlighted) {
       for (let i = 1; i <= 8; i += 1) {
