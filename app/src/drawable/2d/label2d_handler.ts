@@ -227,8 +227,14 @@ export class Label2DHandler {
         state.task.config.labelTypes[state.user.select.labelType] ===
         LabelTypeName.TAG
       ) {
+        if (numValue > state.task.config.attributes[0].values.length) {
+          return
+        }
         Session.dispatch(addLabelTag(0, numValue - 1))
       } else {
+        if (numValue > state.task.config.categories.length) {
+          return
+        }
         handleChange(null, numValue - 1)
       }
       return
