@@ -6,7 +6,7 @@ import {
   ShapeType,
   State
 } from "../../types/state"
-import { Context2D } from "../util"
+import { Context2D, isHexColor } from "../util"
 import { DrawMode, Label2D } from "./label2d"
 import { Label2DList } from "./label2d_list"
 
@@ -79,10 +79,17 @@ export class Tag2D extends Label2D {
     if (mode === DrawMode.VIEW) {
       context.font = "36px Arial"
       const abbr: string[] = []
+      const colors: string[] = []
       for (const key in this.attributes) {
         if (this.attributes[key][0] !== -1) {
           const selectedIndex = this.attributes[key][0]
           const selectedAttribute = this.configAttributes[key]
+          const color =
+            selectedAttribute.colors !== undefined &&
+            isHexColor(selectedAttribute.colors[selectedIndex])
+              ? selectedAttribute.colors[selectedIndex]
+              : "red"
+          colors.push(color)
           if (selectedAttribute.toolType === AttributeToolType.SWITCH) {
             if (selectedIndex === 1) {
               abbr.push(
@@ -99,9 +106,9 @@ export class Tag2D extends Label2D {
       context.fillStyle = "lightgrey"
       context.globalAlpha = 0.3
       context.fillRect(5, 5, 400, abbr.length > 0 ? abbr.length * 35 + 15 : 0)
-      context.fillStyle = "red"
       context.globalAlpha = 1.0
       for (let i = 0; i < abbr.length; i++) {
+        context.fillStyle = colors[i]
         context.fillText(abbr[i], 5, 40 + i * 35)
       }
     }

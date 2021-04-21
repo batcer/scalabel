@@ -313,6 +313,8 @@ export interface Attribute {
   tagSuffixes: string[]
   /** button colors */
   buttonColors: string[]
+  /** text colors */
+  colors: string[]
 }
 
 /*

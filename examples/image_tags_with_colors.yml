@@ -1,0 +1,77 @@
+-
+  name: Weather
+  toolType: list
+  values:
+    - NA
+    - Rainy
+    - Snowy
+    - Clear
+    - Overcast
+    - Partly Cloudy
+    - Foggy
+  tagPrefix: w
+  tagSuffixes:
+    - ""
+    - r
+    - s
+    - c
+    - o
+    - p
+    - f
+  colors:
+    - "#0000ff"
+    - "#5fbdff"
+    - "#660000"
+    - "#FF4400"
+    - "#ff3aff"
+    - "#ff0000"
+    - "#ff9cc3"
+
+-
+  name: Scene
+  toolType: list
+  values:
+    - NA
+    - Tunnel
+    - Residential
+    - Parking Lot
+    - City Street
+    - Gas Stations
+    - Highway
+  tagPrefix: s
+  tagSuffixes:
+    - ""
+    - t
+    - r
+    - p
+    - c
+    - g
+    - h
+  colors:
+    - "#5a085f"
+    - "#ffffff"
+    - "#308289"
+    - "#5745ef"
+    - "#ff3aff"
+    - "#ff0000"
+    - "#ff9cc3"
+
+-
+  name: Timeofday
+  toolType: list
+  values:
+    - NA
+    - Daytime
+    - Night
+    - Dawn/Dusk
+  tagPrefix: t
+  tagSuffixes:
+    - ""
+    - day
+    - n
+    - daw
+  colors:
+    - "#5a085f"
+    - "#ffffff"
+    - "#308289"
+    - "#5745ef"

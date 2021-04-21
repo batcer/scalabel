@@ -408,6 +408,7 @@ export function makeAttribute(params: Partial<Attribute> = {}): Attribute {
     tagPrefix: "",
     tagSuffixes: [],
     buttonColors: [],
+    colors: [],
     ...params
   }
 }
