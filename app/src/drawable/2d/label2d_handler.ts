@@ -61,7 +61,6 @@ export class Label2DHandler {
    * Process mouse down action
    *
    * @param coord
-   * @param labelIndex
    * @param _labelIndex
    * @param handleIndex
    */
@@ -125,8 +124,6 @@ export class Label2DHandler {
    * Process mouse up action
    *
    * @param coord
-   * @param labelIndex
-   * @param handleIndex
    * @param _labelIndex
    * @param _handleIndex
    */
@@ -360,7 +357,6 @@ export class Label2DHandler {
   /**
    * Handling function for canvas visibility change
    *
-   * @param _isVisible
    */
   public onVisibilityChange(): void {
     // eslint-disable-next-line @typescript-eslint/no-dynamic-delete

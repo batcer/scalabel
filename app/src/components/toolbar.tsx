@@ -90,7 +90,7 @@ export class ToolBar extends Component<Props> {
   /**
    * handles keyDown Events
    *
-   * @param {keyboardEvent} e
+   * @param {KeyboardEvent} e
    */
   public onKeyDown(e: KeyboardEvent): void {
     switch (e.key) {
@@ -190,7 +190,6 @@ export class ToolBar extends Component<Props> {
   /**
    * handler for the delete button/key
    *
-   * @param {string} alignment
    */
   private deletePressed(): void {
     const select = this.state.user.select
@@ -328,7 +327,6 @@ export class ToolBar extends Component<Props> {
    * attributes
    *
    * @param allAttributes
-   * @param name
    * @param toggleName
    */
   private getAttributeIndex(
