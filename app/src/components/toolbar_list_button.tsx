@@ -32,8 +32,8 @@ interface Props {
   name: string
   /** values of ToggleButtons */
   values: string[]
-  /** whether button should have hotkey and tip for it */
-  shouldHaveHotKey: boolean
+  /** button hotkey tip values array */
+  hotKeys: string[] | null
 }
 
 /**
@@ -60,7 +60,7 @@ class ToggleButtons extends React.Component<Props> {
 
   /** render function of ToggleButtons */
   public render(): JSX.Element {
-    const { name, classes, values, shouldHaveHotKey } = this.props
+    const { name, classes, values, hotKeys } = this.props
     const ToggleBtn = withStyles(toggleButtonStyle)(ToggleButton)
     return (
       <List style={{ width: "100%", padding: "0px" }}>
@@ -85,7 +85,7 @@ class ToggleButtons extends React.Component<Props> {
               >
                 {" "}
                 {element}
-                {shouldHaveHotKey && index < 9 ? ` [${index + 1}] ` : " "}
+                {hotKeys?.[index] !== undefined ? ` [${hotKeys[index]}] ` : " "}
               </ToggleBtn>
             ))}
           </ToggleButtonGroup>

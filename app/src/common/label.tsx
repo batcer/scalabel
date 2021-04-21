@@ -15,7 +15,7 @@ import { AttributeToolType } from "../const/common"
  * @param getAlignmentIndex
  * @param {string} name
  * @param {string[]} options
- * @param {boolean} shouldHaveHotKey
+ * @param {string[]} hotKeys
  */
 export function renderTemplate(
   toolType: string,
@@ -24,7 +24,7 @@ export function renderTemplate(
   getAlignmentIndex: (switName: string) => number,
   name: string,
   options: string[],
-  shouldHaveHotKey: boolean
+  hotKeys: string[] | null
 ): React.ReactNode {
   if (toolType === AttributeToolType.SWITCH) {
     return (
@@ -42,7 +42,7 @@ export function renderTemplate(
           values={options}
           handleAttributeToggle={handleAttributeToggle}
           getAlignmentIndex={getAlignmentIndex}
-          shouldHaveHotKey={shouldHaveHotKey}
+          hotKeys={hotKeys}
         />
       </ListItem>
     )

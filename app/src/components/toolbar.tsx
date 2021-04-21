@@ -17,7 +17,12 @@ import {
 import { addLabelTag } from "../action/tag"
 import { renderTemplate } from "../common/label"
 import Session from "../common/session"
-import { AttributeToolType, Key, LabelTypeName } from "../const/common"
+import {
+  AttributeToolType,
+  AvailableHotKeys,
+  Key,
+  LabelTypeName
+} from "../const/common"
 import { getSelectedTracks } from "../functional/state_util"
 import { isValidId } from "../functional/states"
 import { tracksOverlapping } from "../functional/track"
@@ -35,6 +40,7 @@ interface Props {
   /** labelType of ToolBar 'box2d' | 'polygon2d' | 'lane' */
   labelType: string
 }
+
 /**
  * This is ToolBar component that displays
  * all the attributes and categories for the 2D bounding box labeling tool
@@ -48,19 +54,22 @@ export class ToolBar extends Component<Props> {
   private readonly _keyUpHandler: (e: KeyboardEvent) => void
 
   /**
-   * Determines whether or not given attibute element
-   * should have an option to be selected by pressing a hotkey
+   * Return array of hotkey tip chars
    *
-   * @param {Attribute} element
-   *
+   * @param {number} index - index of current attribute element in categories list
+   * @param {Attribute} element - attribute element
    */
-  private shouldHaveHotKey(element: Attribute): boolean {
+  private hotKeys(index: number, element: Attribute): string[] | null {
     const state = this.state
-    return (
+    if (
       element.toolType !== AttributeToolType.LIST ||
-      state.task.config.labelTypes[state.user.select.labelType] ===
-        LabelTypeName.TAG
-    )
+      state.task.config.labelTypes[state.user.select.labelType] !==
+        LabelTypeName.TAG ||
+      index > 3
+    ) {
+      return null
+    }
+    return AvailableHotKeys[index].slice(0, element.values.length)
   }
 
   /**
@@ -142,7 +151,7 @@ export class ToolBar extends Component<Props> {
           <Category categories={categories} headerText={"Category"} />
         ) : null}
         <List>
-          {attributes.map((element: Attribute) => (
+          {attributes.map((element: Attribute, index: number) => (
             <React.Fragment key={element.name}>
               {renderTemplate(
                 element.toolType,
@@ -151,7 +160,7 @@ export class ToolBar extends Component<Props> {
                 this.getAlignmentIndex,
                 element.name,
                 element.values,
-                this.shouldHaveHotKey(element)
+                this.hotKeys(index, element)
               )}
             </React.Fragment>
           ))}
